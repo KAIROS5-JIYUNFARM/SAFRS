@@ -1,0 +1,72 @@
+cmake_minimum_required(VERSION 3.8)
+project(project_hybrid_cluster)
+
+# ======================================================================
+# 1. 기본 설정
+# ======================================================================
+
+if(NOT CMAKE_CXX_STANDARD)
+  set(CMAKE_CXX_STANDARD 17)
+endif()
+
+# 필요한 패키지 찾기
+find_package(ament_cmake REQUIRED)
+find_package(rclcpp REQUIRED)
+find_package(rclpy REQUIRED)
+find_package(std_msgs REQUIRED)
+find_package(sensor_msgs REQUIRED)
+find_package(nav_msgs REQUIRED)
+find_package(tf2_ros REQUIRED)
+find_package(geometry_msgs REQUIRED)
+find_package(builtin_interfaces REQUIRED)
+
+# ======================================================================
+# 2. Python 노드 설치 (실행 가능하게 등록)
+# ======================================================================
+
+# scripts/*.py 전체를 ROS2 executable 로 설치
+file(GLOB PY_NODES scripts/*.py)
+
+install(PROGRAMS ${PY_NODES}
+  DESTINATION lib/${PROJECT_NAME}
+)
+
+# ======================================================================
+# 3. C++ 노드 빌드 (robot_controller.cpp 존재할 때만)
+# ======================================================================
+
+set(CPP_NODE src/robot_controller.cpp)
+
+if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/src/robot_controller.cpp")
+  add_executable(robot_controller ${CPP_NODE})
+  ament_target_dependencies(robot_controller rclcpp std_msgs sensor_msgs)
+
+  install(TARGETS robot_controller
+    DESTINATION lib/${PROJECT_NAME})
+endif()
+
+# ======================================================================
+# 4. Launch, Config, URDF 설치
+# ======================================================================
+
+install(
+  DIRECTORY launch/
+  DESTINATION share/${PROJECT_NAME}/launch
+)
+
+install(
+  DIRECTORY config/
+  DESTINATION share/${PROJECT_NAME}/config
+)
+
+install(
+  DIRECTORY urdf/
+  DESTINATION share/${PROJECT_NAME}/urdf
+)
+
+# ======================================================================
+# 5. 패키지 등록
+# ======================================================================
+
+ament_package()
+

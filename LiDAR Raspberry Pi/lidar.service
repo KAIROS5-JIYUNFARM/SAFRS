@@ -1,0 +1,15 @@
+[Unit]
+Description=LiDAR ZMQ Publisher Service
+After=network.target
+
+[Service]
+Type=simple
+Restart=always
+ExecStart=/usr/bin/python3 /home/ubuntu/lidar_client/lidar_reader.py
+WorkingDirectory=/home/ubuntu/lidar_client
+StandardOutput=inherit
+StandardError=inherit
+
+[Install]
+WantedBy=multi-user.target
+

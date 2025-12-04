@@ -1,0 +1,45 @@
+amcl:
+  ros__parameters:
+    use_sim_time: false                 # 🔹 시뮬레이션 시간 사용 여부 (실기기 = false)
+    base_frame_id: base_link            # 🔹 로봇의 기본 좌표계
+    odom_frame_id: odom                 # 🔹 오돔 프레임 이름 (main Pi에서 퍼블리시하는 /odom과 일치해야 함)
+    scan_topic: scan                    # 🔹 라이다 토픽 이름 (Lidar Pi에서 보내는 scan 데이터)
+    update_min_d: 0.05                  # 🔹 최소 이동 거리 업데이트 (5cm 이상 움직여야 AMCL 업데이트)
+    update_min_a: 0.05                  # 🔹 최소 회전 업데이트 (0.05rad ≈ 2.8도)
+
+map_server:
+  ros__parameters:
+    use_sim_time: false                 # 🔹 실기기에서 사용 ⇒ false
+    yaml_filename: map.yaml             # 🔹 저장된 맵 파일 (main Pi에서 관리)
+
+planner_server:
+  ros__parameters:
+    planner_plugins: ["GridBased"]      # 🔹 Nav2 경로 계획 플러그인 목록
+
+    GridBased:
+      plugin: "nav2_navfn_planner/NavfnPlanner"   # 🔹 Navfn 기반 전역 경로 생성
+                                                   #     - Dijkstra 기반 최단 거리 경로
+                                                   #     - 로봇이 맵 전체에서 목표까지 경로 생성
+
+controller_server:
+  ros__parameters:
+    controller_plugins: ["FollowPath"]  # 🔹 로컬 경로 추종 플러그인 목록
+
+    FollowPath:
+      plugin: "nav2_regulated_pure_pursuit_controller/RegulatedPurePursuitController"
+                                          # 🔹 Pure Pursuit 기반 로컬 컨트롤러
+                                          #     - Goal 방향으로 곡선을 따라가는 방식
+                                          #     - 실제 AGV에서 많이 쓴다
+                                          #     - 속도 제한, 회전 제어 안정적
+
+bt_navigator:
+  ros__parameters:
+    use_sim_time: false
+    bt_xml_filename: "navigate_w_replanning_and_recovery.xml"
+                                          # 🔹 Nav2의 Behavior Tree 파일
+                                          #     - 경로 재탐색
+                                          #     - 충돌 시 리커버리 행동 포함
+
+waypoint_followers:
+  ros__parameters:
+    use_sim_time: false                 # 🔹 웨이포인트 따라가기 노드 (여러 목표 지점 순차 이동)

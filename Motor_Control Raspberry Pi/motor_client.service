@@ -1,0 +1,14 @@
+[Unit]
+Description=Motor Client Serial Bridge + Odom Service
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/ubuntu/motor_client
+ExecStart=/home/ubuntu/motor_client/start_motor_client.sh
+Restart=always
+User=ubuntu
+
+[Install]
+WantedBy=multi-user.target
+
