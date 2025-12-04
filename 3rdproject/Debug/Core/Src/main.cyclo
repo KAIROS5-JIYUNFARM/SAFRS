@@ -1,0 +1,11 @@
+../Core/Src/main.c:114:13:Servo_Write	6
+../Core/Src/main.c:123:6:Gimbal_Init	2
+../Core/Src/main.c:177:5:main	20
+../Core/Src/main.c:390:6:SystemClock_Config	3
+../Core/Src/main.c:435:14:constrain	3
+../Core/Src/main.c:443:9:MPU9250_Read_WHOAMI	1
+../Core/Src/main.c:456:6:MPU9250_Read_Accel	1
+../Core/Src/main.c:473:6:MPU9250_Read_Gyro	1
+../Core/Src/main.c:485:6:Calculate_RollPitch	1
+../Core/Src/main.c:497:6:UART_Print	1
+../Core/Src/main.c:508:6:Error_Handler	1
