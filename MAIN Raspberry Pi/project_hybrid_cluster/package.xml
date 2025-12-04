@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>project_hybrid_cluster</name>
+  <version>0.0.1</version>
+  <description>Main Pi SLAM / Navigation / ZMQ cluster package</description>
+
+  <maintainer email="ubuntu@example.com">ubuntu</maintainer>
+  <license>MIT</license>
+
+  <!-- Build system -->
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <!-- C++ -->
+  <depend>rclcpp</depend>
+
+  <!-- Python -->
+  <depend>rclpy</depend>
+  <exec_depend>python3</exec_depend>
+  <exec_depend>python3-numpy</exec_depend>
+  <exec_depend>python3-opencv</exec_depend>
+  <exec_depend>python3-yaml</exec_depend>
+
+  <!-- ROS msgs -->
+  <depend>std_msgs</depend>
+  <depend>sensor_msgs</depend>
+  <depend>nav_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>builtin_interfaces</depend>
+  <depend>tf2_ros</depend>
+
+  <!-- Launch -->
+  <exec_depend>ros2launch</exec_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>
+
