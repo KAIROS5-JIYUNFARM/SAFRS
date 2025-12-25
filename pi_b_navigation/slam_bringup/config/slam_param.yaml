@@ -1,0 +1,27 @@
+slam_toolbox:
+  ros__parameters:
+    use_sim_time: false
+
+    #lam_mode: false
+
+    # Topics
+    scan_topic: /scan
+    odom_topic: /odom     # ★ 반드시 추가
+
+    # TF Frames
+    base_frame: base_link
+    odom_frame: odom
+    map_frame: map
+
+    # Mapping settings
+    resolution: 0.05
+    max_laser_range: 10.0
+    minimum_time_interval: 0.05
+    transform_timeout: 1.0
+    map_update_interval: 0.5
+    scan_queue_size: 50          # 기본보다 키움
+    throttle_scans: 1            # 1=모두 사용, 여전히 드롭이면 2로
+    mode: mapping
+    scan_qos:
+      reliability: best_effort
+      durability: volatile

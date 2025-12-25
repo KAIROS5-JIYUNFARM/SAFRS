@@ -1,0 +1,86 @@
+Panels:
+  - Class: rviz_common/Displays
+    Name: Displays
+  - Class: rviz_common/Selection
+    Name: Selection
+  - Class: rviz_common/Views
+    Name: Views
+
+Visualization Manager:
+  Name: root
+  Class: ""
+  Enabled: true
+
+  Global Options:
+    Background Color: 48; 48; 48
+    Fixed Frame: map
+    Frame Rate: 30
+
+  Displays:
+    - Class: rviz_default_plugins/Grid
+      Name: Grid
+      Enabled: true
+      Alpha: 0.5
+      Color: 160; 160; 160
+      Cell Size: 1
+      Plane: XY
+      Plane Cell Count: 20
+      Reference Frame: <Fixed Frame>
+
+    - Class: rviz_default_plugins/TF
+      Name: TF
+      Enabled: true
+      Frame Timeout: 15
+      Marker Scale: 0.5
+      Show Arrows: true
+      Show Axes: true
+      Show Names: true
+
+    - Class: rviz_default_plugins/Map
+      Name: Map
+      Enabled: true
+      Alpha: 1
+      Color Scheme: map
+      Topic: /map
+
+    - Class: rviz_default_plugins/LaserScan
+      Name: Scan
+      Enabled: true
+      Topic: /scan
+      Color: 255; 0; 0
+      Size (Pixels): 3
+      Style: Points
+      Use Fixed Frame: true
+
+    - Class: rviz_default_plugins/Path
+      Name: Trajectory
+      Enabled: true
+      Topic: /slam_toolbox/trajectory
+      Color: 0; 255; 255
+      Line Style: Lines
+      Line Width: 0.03
+      Alpha: 1
+
+    - Class: rviz_default_plugins/Pose
+      Name: Pose
+      Enabled: true
+      Topic: /slam_toolbox/pose
+      Shape: Arrow
+      Color: 0; 255; 0
+      Alpha: 1
+
+  Tools:
+    - Class: rviz_default_plugins/MoveCamera
+    - Class: rviz_default_plugins/Select
+    - Class: rviz_default_plugins/Measure
+
+  Views:
+    Current:
+      Class: rviz_default_plugins/Orbit
+      Distance: 5
+      Pitch: 0.785398
+      Yaw: 0.785398
+      Focal Point:
+        X: 0
+        Y: 0
+        Z: 0

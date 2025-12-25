@@ -1,0 +1,56 @@
+Panels:
+  - Class: rviz_common/Displays
+    Name: Displays
+  - Class: rviz_common/ToolProperties
+    Name: Tool Properties
+  - Class: rviz_common/Views
+    Name: Views
+
+Visualization Manager:
+  Global Options:
+    Fixed Frame: map
+    Background Color: 48; 48; 48
+
+  Displays:
+    - Name: Map
+      Class: rviz_default_plugins/Map
+      Enabled: true
+      Topic: /map
+
+    - Name: Global Costmap
+      Class: nav2_rviz_plugins/Costmap
+      Enabled: true
+      Topic: /global_costmap/costmap_raw
+
+    - Name: Local Costmap
+      Class: nav2_rviz_plugins/Costmap
+      Enabled: true
+      Topic: /local_costmap/costmap_raw
+
+    - Name: RobotModel
+      Class: rviz_default_plugins/RobotModel
+      Enabled: true
+
+    - Name: TF
+      Class: rviz_default_plugins/TF
+      Enabled: true
+      Show Names: true
+      Show Axes: true
+      Marker Scale: 0.25
+
+    - Name: Path
+      Class: rviz_default_plugins/Path
+      Enabled: true
+      Topic: /plan
+
+Tools:
+  - Class: rviz_default_plugins/Interact
+  - Class: rviz_default_plugins/MoveCamera
+  - Class: nav2_rviz_plugins/GoalTool
+
+Views:
+  Current:
+    Class: rviz_default_plugins/Orbit
+    Distance: 6.0
+    Pitch: 0.7
+    Yaw: 0.0
