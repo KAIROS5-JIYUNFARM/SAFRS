@@ -1,0 +1,21 @@
+slam_toolbox:
+  ros__parameters:
+    use_sim_time: false
+
+    mode: localization
+
+    map_file_name: "/home/ubuntu/ros2_ws/src/slam_bringup/maps/map.yaml"
+
+    scan_topic: /scan
+    odom_topic: /odom
+
+    base_frame: base_link
+    odom_frame: odom
+    map_frame: map
+
+    transform_timeout: 1.0
+    scan_queue_size: 50
+
+    scan_qos:
+      reliability: best_effort
+      durability: volatile
